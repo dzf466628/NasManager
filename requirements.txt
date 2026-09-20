@@ -1,0 +1,5 @@
+PySide6>=6.6.0
+# 注意：不要用 paramiko 5.x（与群晖 internal-sftp 兼容有问题）
+paramiko>=3.4.0,<5.0
+keyring>=24.0.0
+cryptography>=42.0.0

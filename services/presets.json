@@ -1,0 +1,26 @@
+{
+  "services": [
+    {
+      "name": "Nginx",
+      "category": "web",
+      "check_cmd": "ps -ef | grep -w nginx | grep -v grep | head -1",
+      "start_cmd": "systemctl start nginx",
+      "stop_cmd": "systemctl stop nginx",
+      "restart_cmd": "systemctl restart nginx",
+      "need_sudo": true,
+      "config_test_cmd": "nginx -t",
+      "config_path": "/etc/nginx/nginx.conf",
+      "systemd_service": "nginx",
+      "reload_cmd": "nginx -s reload"
+    }
+  ],
+  "custom_services": [],
+  "quick_commands": [
+    {"name": "系统信息", "cmd": "uname -a"},
+    {"name": "磁盘使用", "cmd": "df -h"},
+    {"name": "内存使用", "cmd": "free -m"},
+    {"name": "最近登录", "cmd": "last -5"},
+    {"name": "查看 Node 日志", "cmd": "tail -50 {web_dir}/server.log"}
+  ],
+  "common_ports": [80, 443, 450, 3000, 5000, 22, 8080, 8443, 21, 23, 3306, 5432, 6379, 27017]
+}
