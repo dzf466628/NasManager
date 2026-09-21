@@ -270,6 +270,7 @@ class RemoteDirDialog(QDialog):
 
 
 DIR_BROWSE_PHP = r"""<?php
+header('Access-Control-Allow-Origin: *');
 header('Content-Type: text/html; charset=utf-8');
 $title = '{{TITLE}}';
 $files = glob('*');

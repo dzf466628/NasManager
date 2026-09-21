@@ -37,7 +37,7 @@ from widgets.scan_dialog import ScanDialog
 from widgets.about import AboutDialog
 
 # 界面版本号（右下角状态栏显示；发版时递增）
-APP_VERSION = "v1.1.77"
+APP_VERSION = "v1.1.78"
 
 # ---------- 自动更新 ----------
 

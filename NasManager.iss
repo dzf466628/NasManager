@@ -1,6 +1,6 @@
 ; NasManager 安装包脚本 (Inno Setup 6)
 #define MyAppName "NasManager"
-#define MyAppVersion "1.1.77"
+#define MyAppVersion "1.1.78"
 #define MyAppExeName "NasManager.exe"
 #define MyAppId "{{8E4F7C2A-9B3D-4E5F-8A1C-6D2B3E4F5A6B}"
 
