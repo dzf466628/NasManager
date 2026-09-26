@@ -14,6 +14,7 @@ from PySide6.QtWidgets import (
     QPlainTextEdit, QDialog, QDialogButtonBox, QSizePolicy, QInputDialog,
 )
 
+import telemetry
 from widgets.base import BaseWidget
 
 TEXT_EXTENSIONS = {
@@ -241,6 +242,7 @@ class FileBrowserWidget(BaseWidget):
         name = os.path.basename(local)
         remote = self.current_path.rstrip("/") + "/" + name
         self.status_msg(f"正在上传 {name}...")
+        telemetry.track("上传文件")
         self.transfer_file("upload", local, remote,
                            on_done=lambda ok, msg, n=name: self._on_transfer_done("上传", n, ok, msg),
                            on_progress=self._on_transfer_progress)
@@ -253,6 +255,7 @@ class FileBrowserWidget(BaseWidget):
         if is_dir:
             QMessageBox.information(self, "提示", "暂不支持下载文件夹")
             return
+        telemetry.track("下载文件")
         self._download_path(path, name)
 
     def _download_path(self, remote: str, name: str):
@@ -283,6 +286,7 @@ class FileBrowserWidget(BaseWidget):
             return
         if QMessageBox.question(self, "确认", f"删除「{name}」？") != QMessageBox.Yes:
             return
+        telemetry.track("删除文件")
         if self.ssh.ssh_delete(path, is_dir):
             self.refresh()
         else:
@@ -292,6 +296,7 @@ class FileBrowserWidget(BaseWidget):
         path, name, is_dir = self._selected_path()
         if not path:
             return
+        telemetry.track("重命名")
         new_name, ok = QInputDialog.getText(self, "重命名", "新名称：", text=name)
         if not ok or not new_name.strip():
             return
@@ -302,6 +307,7 @@ class FileBrowserWidget(BaseWidget):
             QMessageBox.critical(self, "失败", f"重命名失败: {self.ssh.last_sftp_error}")
 
     def _mkdir(self):
+        telemetry.track("新建文件夹")
         name, ok = QInputDialog.getText(self, "新建文件夹", "文件夹名称：")
         if not ok or not name.strip():
             return

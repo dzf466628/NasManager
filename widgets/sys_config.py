@@ -13,6 +13,7 @@ from PySide6.QtWidgets import (
     QMessageBox, QApplication, QFrame,
 )
 
+import telemetry
 from widgets.base import BaseWidget
 from app_paths import resource_path
 from widgets.sys_config_helpers import shq as _helper_shq, main_site_info as _helper_main_site_info
@@ -336,6 +337,7 @@ class SysConfigWidget(BaseWidget):
         if not cap and not text:
             QMessageBox.information(self, "提示", "还没有内容，请先点「刷新数据」")
             return
+        telemetry.track("复制全部环境配置")
         full = cap + ("\n\n" if cap and text else "") + text
         QApplication.clipboard().setText(full)
         self.state_lbl.setText("已复制全部配置到剪贴板")
@@ -345,6 +347,7 @@ class SysConfigWidget(BaseWidget):
         if not text:
             QMessageBox.information(self, "提示", "还没有评估内容，请先连接 NAS 完成环境体检")
             return
+        telemetry.track("复制网站能力评估")
         QApplication.clipboard().setText(text)
         self.state_lbl.setText("已复制网站能力评估到剪贴板")
 

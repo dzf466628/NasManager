@@ -11,6 +11,7 @@ from PySide6.QtWidgets import (
     QTableWidget, QTableWidgetItem, QHeaderView, QMessageBox,
 )
 
+import telemetry
 from widgets.base import BaseWidget
 from widgets.site_colors import site_color_hex
 from widgets import msg
@@ -86,6 +87,7 @@ class PortViewerWidget(BaseWidget):
         if not self.ssh or not self.ssh.is_connected:
             return
         # netstat 可能需要 root 才能看到 PID，先普通执行，没 PID 再试 sudo
+        telemetry.track("端口扫描")
         self.run_cmd("netstat -tlnp 2>/dev/null", self._on_netstat, timeout=15)
 
     def _on_netstat(self, r):

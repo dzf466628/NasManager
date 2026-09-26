@@ -25,6 +25,7 @@ from ssh_client import SSHClient
 from env_probe import EnvProbe
 from splash import SplashScreen, DEFAULT_DURATION_MS
 from app_paths import resource_path
+import telemetry
 from widgets.connection_dialog import ConnectionDialog
 from widgets.dashboard import DashboardWidget
 from widgets.service_manager import ServiceManagerWidget
@@ -37,7 +38,7 @@ from widgets.scan_dialog import ScanDialog
 from widgets.about import AboutDialog
 
 # 界面版本号（右下角状态栏显示；发版时递增）
-APP_VERSION = "v1.1.78"
+APP_VERSION = "v1.1.79"
 
 # ---------- 自动更新 ----------
 
@@ -483,6 +484,7 @@ class MainWindow(QMainWindow):
         self._connect_selected()
 
     def _add_connection(self):
+        telemetry.track("添加连接")
         dlg = ConnectionDialog(self)
         if dlg.exec():
             self.config.add(dlg.get_connection())
@@ -516,6 +518,7 @@ class MainWindow(QMainWindow):
             return
         if self.ssh and self.ssh.is_connected:
             self._disconnect()
+        telemetry.track("连接NAS")
         self.status.showMessage(f"正在连接 {conn.host}...")
         self.ssh = SSHClient(conn.host, conn.port, conn.username, conn.password,
                              on_log=lambda m: self.status.showMessage(m))
@@ -654,6 +657,7 @@ class MainWindow(QMainWindow):
         if not self.ssh or not self.ssh.is_connected:
             QMessageBox.information(self, "提示", "请先连接 NAS")
             return
+        telemetry.track("设置Sudo密码")
         pwd, ok = QInputDialog.getText(self, "Sudo 密码", "输入 sudo 密码（仅本次会话缓存）：",
                                        QLineEdit.Password)
         if ok and pwd:
@@ -684,6 +688,7 @@ class MainWindow(QMainWindow):
         """点击更新按钮：确认后开始下载"""
         if not self._update_url:
             return
+        telemetry.track("下载更新")
         ok = QMessageBox.question(
             self, "发现新版本",
             f"当前版本：{APP_VERSION}\n最新版本：v{self._update_version}\n\n"
@@ -744,6 +749,7 @@ class MainWindow(QMainWindow):
         """弹窗扫描 NAS 环境，结果存进连接配置"""
         if not self.ssh or not self.ssh.is_connected:
             return
+        telemetry.track("扫描NAS环境")
         dlg = ScanDialog(self.ssh, self)
         dlg.exec()
         if dlg.result:
@@ -776,6 +782,13 @@ class MainWindow(QMainWindow):
                 old.on_hide()
             except Exception:
                 pass
+        # 使用统计：按页面名记一次
+        try:
+            _tp = ("仪表盘", "服务管理", "端口管理", "网页面板",
+                   "文件管理", "系统配置", "终端")
+            telemetry.track("打开页面-" + (_tp[row] if 0 <= row < len(_tp) else "其他"))
+        except Exception:
+            pass
         widget_map = {
             0: self.dashboard,
             1: self.service_mgr,
@@ -857,6 +870,9 @@ def _startup_log(msg: str):
 
 def main():
     setup_exception_hook()
+    # 使用统计（只报计数、已脱敏、全静默；绝不影响软件运行）
+    telemetry.start(APP_VERSION)
+    telemetry.heartbeat()
     _startup_log("STEP0 app 创建前")
     app = QApplication(sys.argv)
     # 设置窗口图标：标题栏 / 任务栏 / 开始菜单都显示 NAS 图标

@@ -14,6 +14,7 @@ from PySide6.QtWidgets import (
     QSizePolicy, QListWidget, QListWidgetItem, QInputDialog,
 )
 
+import telemetry
 from widgets.base import BaseWidget
 from app_paths import resource_path
 from widgets import msg
@@ -950,6 +951,7 @@ class ServiceManagerWidget(BaseWidget):
         """热重载（nginx -s reload，不断连接）"""
         if not self._need_sudo_tip():
             return
+        telemetry.track("热重载服务")
         cmd = self._resolve_cmd(card.svc.get("reload_cmd", "nginx -s reload"))
         self.run_cmd(cmd, lambda r, c=card: self._on_svc_reload(c, r), timeout=10, sudo=True)
 
@@ -962,6 +964,7 @@ class ServiceManagerWidget(BaseWidget):
     def svc_config_test(self, card: ServiceCard):
         if not self._need_sudo_tip():
             return
+        telemetry.track("服务配置检测")
         cmd = self._resolve_cmd(card.svc.get("config_test_cmd", "nginx -t"))
         self.run_cmd(cmd, lambda r, c=card: self._on_svc_config_test(c, r), timeout=10, sudo=True)
 
@@ -978,6 +981,7 @@ class ServiceManagerWidget(BaseWidget):
             return
         if QMessageBox.question(self, "确认", f"完整重启 {svc} 服务？\n（会短暂中断 Nginx，几十秒后恢复）") != QMessageBox.Yes:
             return
+        telemetry.track("完整重启服务")
         self.run_cmd(f"systemctl restart {svc}", lambda r, c=card: self._on_svc_systemd(c, r),
                      timeout=30, sudo=True)
 
@@ -1044,6 +1048,7 @@ class ServiceManagerWidget(BaseWidget):
 
     def open_share_manager(self, card: "ServiceCard"):
         """打开目录共享管理对话框"""
+        telemetry.track("目录共享")
         web = self._resolve_cmd("{web_dir}") or "/volume1/web"
         sf = self._share_state_file()
         # 读取当前共享列表
@@ -1104,6 +1109,8 @@ class ServiceManagerWidget(BaseWidget):
             QMessageBox.warning(self, "提示", "该服务需要 sudo，请先在工具栏设置 Sudo 密码")
             return
 
+        telemetry.track({"start": "启动服务", "stop": "停止服务",
+                         "restart": "重启服务"}.get(action, "服务-" + str(action)))
         # start/restart 一律走 detached：进程可能前台运行，detached 不会等它结束而超时
         # stop 用 run_cmd 等待完成
         if action in ("start", "restart"):
@@ -1173,6 +1180,7 @@ class ServiceManagerWidget(BaseWidget):
                     it.setForeground(QBrush(QColor(color)))
 
     def _add_custom(self):
+        telemetry.track("添加自定义服务")
         dlg = CustomServiceDialog(self)
         if dlg.exec():
             data = dlg.get_data()
@@ -1205,5 +1213,6 @@ class ServiceManagerWidget(BaseWidget):
         if not log_path:
             QMessageBox.information(self, "提示", "该服务未配置日志路径")
             return
+        telemetry.track("查看服务日志")
         self.run_cmd(f"tail -n 100 {log_path} 2>&1", lambda r, c=card: self._on_show_log(c, r),
                      timeout=10)

@@ -13,6 +13,7 @@ from PySide6.QtWidgets import (
     QWidget, QSizePolicy,
 )
 
+import telemetry
 from widgets.base import BaseWidget
 from app_paths import resource_path
 
@@ -193,6 +194,7 @@ class TerminalWidget(BaseWidget):
         self.input.clear()
 
     def _run_quick(self, cmd: str):
+        telemetry.track("终端快捷命令")
         cmd = self._resolve_cmd(cmd)
         self.input.setText(cmd)
         self._send_command()

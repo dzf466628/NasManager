@@ -28,6 +28,7 @@ from PySide6.QtWidgets import (
     QProgressBar, QProgressDialog, QRadioButton, QButtonGroup,
 )
 
+import telemetry
 from widgets.base import BaseWidget
 from app_paths import resource_path
 from widgets import msg
@@ -1196,6 +1197,7 @@ class WebPanelWidget(BaseWidget):
             QMessageBox.warning(self, "提示", "需要 sudo 密码，请先在工具栏「设置 Sudo 密码」")
             progress.close()
             return
+        telemetry.track("写入反向代理配置")
         progress = QProgressDialog("正在准备...", None, 0, 0, self)
         progress.setWindowTitle("配置反向代理")
         progress.setWindowModality(Qt.WindowModal)
@@ -1582,6 +1584,7 @@ class WebPanelWidget(BaseWidget):
         if not self.need_sudo():
             QMessageBox.warning(self, "提示", "需要 sudo 密码，请先在工具栏「设置 Sudo 密码」")
             return
+        telemetry.track("设置开机自启")
         # 检测目标机器是否支持 rc.d 自启（换机器/非群晖可能没有该目录）
         rc_dir = rc_file.rsplit("/", 1)[0]
         chk = self.ssh.run_command(f"test -d {rc_dir} && echo yes || echo no", timeout=8, sudo=True)
@@ -3140,6 +3143,7 @@ class WebPanelWidget(BaseWidget):
         if not self.ssh or not self.ssh.is_connected:
             QMessageBox.warning(self, "提示", "未连接")
             return
+        telemetry.track("重新扫描网站")
         self.status_msg("正在重新扫描网站...")
         def on_done(result):
             if self.conn:
