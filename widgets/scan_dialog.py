@@ -1,3 +1,6 @@
+# Copyright (C) 2026 dudu <https://duadu.cc>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 """
 环境扫描进度弹窗
 - 新建 NAS 连接首次连接时弹出，后台扫描环境信息

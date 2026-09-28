@@ -1,3 +1,6 @@
+# Copyright (C) 2026 dudu <https://duadu.cc>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 """Service manager card widget."""
 from PySide6.QtWidgets import QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QFrame, QSizePolicy
 

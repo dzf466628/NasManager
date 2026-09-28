@@ -1,3 +1,6 @@
+# Copyright (C) 2026 dudu <https://duadu.cc>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 """
 SSH 连接封装
 - paramiko 长连接，断线自动重连

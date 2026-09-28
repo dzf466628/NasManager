@@ -1,3 +1,6 @@
+# Copyright (C) 2026 dudu <https://duadu.cc>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 """生成 ICO：所有尺寸（16~256）统一以用户源图为准缩放，比例完全一致"""
 import struct
 from pathlib import Path

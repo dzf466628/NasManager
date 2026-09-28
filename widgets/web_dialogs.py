@@ -1,3 +1,6 @@
+# Copyright (C) 2026 dudu <https://duadu.cc>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 """Web 面板弹窗。
 
 弹窗通过运行时注入 panel/card 与主面板交互，避免反向导入 web_panel。

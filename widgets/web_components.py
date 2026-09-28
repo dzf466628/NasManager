@@ -1,3 +1,6 @@
+# Copyright (C) 2026 dudu <https://duadu.cc>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 """Web 面板通用 Qt 组件。
 
 组件保持原有公开属性、信号和绘制行为；主面板通过兼容别名使用它们。

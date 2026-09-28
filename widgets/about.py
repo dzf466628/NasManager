@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+# Copyright (C) 2026 dudu <https://duadu.cc>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 """关于 / 帮助 声明对话框：软件信息、GPL v3 声明、第三方开源组件、联系方式。"""
 import os
 from PySide6.QtCore import Qt, QUrl

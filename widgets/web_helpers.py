@@ -1,3 +1,6 @@
+# Copyright (C) 2026 dudu <https://duadu.cc>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 """Web 面板的纯逻辑辅助函数。
 
 这些函数不依赖 QWidget 或 WebPanelWidget 实例，集中放置后便于单元测试。

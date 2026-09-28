@@ -1,3 +1,6 @@
+# Copyright (C) 2026 dudu <https://duadu.cc>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 """
 系统配置一览
 - 自动抓取 NAS 环境信息，汇总到单个文本控件

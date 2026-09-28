@@ -1,3 +1,6 @@
+# Copyright (C) 2026 dudu <https://duadu.cc>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 """
 网页服务器专项面板（多站点版）
 - 每个网站一张卡片：状态/PID/运行时长/启停重启/健康检查/实时日志/打开网页

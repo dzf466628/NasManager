@@ -1,3 +1,6 @@
+# Copyright (C) 2026 dudu <https://duadu.cc>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 """
 SFTP 文件管理
 - 文件列表（名称/大小/修改时间）

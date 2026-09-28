@@ -1,3 +1,6 @@
+# Copyright (C) 2026 dudu <https://duadu.cc>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 """Web 面板后台线程。
 
 线程接口与旧 web_panel.py 中的实现保持一致；WebPanelWidget 通过模块末尾

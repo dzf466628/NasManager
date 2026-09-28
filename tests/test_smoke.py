@@ -1,3 +1,6 @@
+# Copyright (C) 2026 dudu <https://duadu.cc>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 """offscreen 冒烟测试 —— 拆分重构的安全网。
 
 验证目标（拆分前后必须都通过）：

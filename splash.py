@@ -1,3 +1,6 @@
+# Copyright (C) 2026 dudu <https://duadu.cc>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 """
 启动动画（Splash Screen）—— 纯透明底 v3
 - 透明窗口，只显示序列帧 + 下方 loading 文字，无背景卡

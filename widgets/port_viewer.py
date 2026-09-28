@@ -1,3 +1,6 @@
+# Copyright (C) 2026 dudu <https://duadu.cc>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 """
 端口管理
 - netstat -tlnp 解析成表格：协议、监听地址、端口、PID、进程

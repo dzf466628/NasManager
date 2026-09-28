@@ -1,3 +1,6 @@
+# Copyright (C) 2026 dudu <https://duadu.cc>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 """
 NAS 管理器 —— 主入口
 布局：左侧连接列表 + 功能导航，右侧 QStackedWidget 内容区

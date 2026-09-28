@@ -1,3 +1,6 @@
+# Copyright (C) 2026 dudu <https://duadu.cc>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 """
 网站配色（马卡龙色系，按色相环排序）
 - 按 sites 列表顺序为每个网站分配固定颜色

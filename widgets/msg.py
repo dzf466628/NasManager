@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+# Copyright (C) 2026 dudu <https://duadu.cc>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 """统一弹窗工具：与软件深绿主题一致的样式，长文本自动换行、限制宽度避免撑满屏幕。
 
 用法：import msg; msg.info(self, "标题", "内容"); ok = msg.question(self, "确认", "...")

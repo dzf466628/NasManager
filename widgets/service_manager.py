@@ -1,3 +1,6 @@
+# Copyright (C) 2026 dudu <https://duadu.cc>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 """
 服务管理
 - 预设服务（Node / Nginx / Docker）+ 自定义服务，一键启动/停止/重启

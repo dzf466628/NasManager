@@ -1,3 +1,6 @@
+# Copyright (C) 2026 dudu <https://duadu.cc>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 """
 Widget 基类与通用 Worker
 - BaseWidget：所有功能页基类，提供 ssh 绑定、后台命令、文件传输

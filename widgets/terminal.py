@@ -1,3 +1,6 @@
+# Copyright (C) 2026 dudu <https://duadu.cc>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 """
 内置 SSH 终端
 - invoke_shell 保持交互式会话（支持 cd 等状态命令）

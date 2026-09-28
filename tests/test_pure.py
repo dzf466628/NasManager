@@ -1,3 +1,6 @@
+# Copyright (C) 2026 dudu <https://duadu.cc>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 """纯函数单元测试 —— 重构安全网。
 
 覆盖项目中所有不依赖 SSH 连接的纯逻辑函数，这些是拆分时最容易被改坏的地方。

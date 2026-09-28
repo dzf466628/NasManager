@@ -1,3 +1,6 @@
+# Copyright (C) 2026 dudu <https://duadu.cc>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 """
 配置管理模块
 - 连接配置（名称/IP/端口/用户名）存在 %APPDATA%/NasManager/connections.json

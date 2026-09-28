@@ -1,3 +1,6 @@
+# Copyright (C) 2026 dudu <https://duadu.cc>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 """
 环境扫描器
 - 通过 SSH 实时探测 NAS 环境，找到写网页需要的配置

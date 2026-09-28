@@ -1,3 +1,6 @@
+# Copyright (C) 2026 dudu <https://duadu.cc>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 """
 环境体检器 EnvProbe
 - 连接 NAS 后动态探测真实环境，供所有页面共用，避免硬编码/写死

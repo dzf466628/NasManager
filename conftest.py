@@ -1,3 +1,6 @@
+# Copyright (C) 2026 dudu <https://duadu.cc>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 """pytest 全局配置：项目根加入 sys.path + Qt offscreen 模式。
 
 作用：让 tests/ 下的测试能 import main / widgets 等模块，

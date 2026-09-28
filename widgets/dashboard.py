@@ -1,3 +1,6 @@
+# Copyright (C) 2026 dudu <https://duadu.cc>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 """
 系统仪表盘
 - CPU / 内存 / 网络 / 运行时间 / 系统信息
