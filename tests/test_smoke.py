@@ -27,7 +27,7 @@ def qapp():
 def _fake_conn(sites=None, web_dir="/volume1/web"):
     return SimpleNamespace(
         id="test1",
-        name="dudua",
+        name="mynas",
         host="192.168.1.100",
         port=22,
         username="root",
